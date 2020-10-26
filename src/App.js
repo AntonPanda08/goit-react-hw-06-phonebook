@@ -31,7 +31,7 @@ class Phonebook extends Component {
         <ContactForm />
         <br />
         <CSSTransition
-          in={contacts.length > 1}
+          in={contacts > 1}
           timeout={250}
           unmountOnExit
           classNames={styles}
@@ -45,6 +45,6 @@ class Phonebook extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
+  contacts: state.contacts.items.length,
 });
 export default connect(mapStateToProps, null)(Phonebook);

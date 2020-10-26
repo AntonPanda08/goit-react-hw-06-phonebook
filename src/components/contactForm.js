@@ -40,7 +40,7 @@ class ContactForm extends Component {
     const { name } = this.state;
 
     if (
-      contacts.items.find(
+      contacts.items.some(
         (contact) => contact.name.name.toLowerCase() === name.toLowerCase()
       )
     ) {
