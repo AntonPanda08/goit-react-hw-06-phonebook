@@ -8,12 +8,12 @@ import styles from "./phonebookList.module.css";
 
 const PhoneBookList = ({ contacts, onRemoveContact }) => (
   <TransitionGroup component="ul" className={styles.phoneBookList}>
-    {contacts.map(({ id, name }) => (
+    {contacts.map(({ id, name, number }) => (
       <CSSTransition key={id} timeout={250} classNames={styles}>
         <PhoneBookItem
           id={id}
-          number={name.number}
-          name={name.name}
+          number={number}
+          name={name}
           onRemoveContact={() => onRemoveContact(id)}
         />
       </CSSTransition>
@@ -28,7 +28,7 @@ PhoneBookList.propTypes = {
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts.items.filter((contact) =>
-    contact.name.name
+    contact.name
       .toLowerCase()
       .includes(state.contacts.filter.toLocaleLowerCase())
   ),

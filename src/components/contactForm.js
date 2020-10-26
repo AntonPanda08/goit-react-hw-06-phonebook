@@ -36,19 +36,19 @@ class ContactForm extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    const { contacts, onSubmit } = this.props;
-    const { name } = this.state;
+    const { contacts, addContact } = this.props;
+    const { name, number } = this.state;
 
     if (
-      contacts.items.some(
-        (contact) => contact.name.name.toLowerCase() === name.toLowerCase()
+      contacts.items.find(
+        (contact) => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       this.NotificationError();
       return;
     }
 
-    onSubmit(this.state);
+    addContact(name, number);
   };
   render() {
     const { name, number } = this.state;
@@ -106,7 +106,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = {
-  onSubmit: contactAction.createContact,
+  addContact: contactAction.createContact,
 };
 
 const mapStateToProps = ({ contacts }) => ({
